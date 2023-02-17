@@ -1,0 +1,46 @@
+debug: false
+spring:
+  main:
+    allow-circular-references: true
+  config:
+    use-legacy-processing: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+  rabbitmq:
+    listener:
+      simple:
+        auto-startup: false
+  thymeleaf:
+    enabled: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  application:
+    name: CIAB
+  profiles:
+    active: test
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  liquibase:
+    enabled: false
+    change-log: classpath:db/liquibase-changelog.xml
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  mvc:
+    format:
+      date: iso
+      date-time: iso
+
+
